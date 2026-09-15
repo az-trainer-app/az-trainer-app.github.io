@@ -100,7 +100,8 @@
   /* ---- screenshot carousel ------------------------------------------- */
   .carousel { position: relative; outline: none; }
   .viewport {
-    overflow: hidden; padding-block: 12px 28px; touch-action: pan-y;
+    /* room for the slides' drop shadows inside the clip, given back in margin */
+    overflow: hidden; padding-block: 48px 96px; margin-block: -36px -68px; touch-action: pan-y;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
   }
