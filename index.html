@@ -3,11 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AZ Trainer · Single-player game trainer for Windows</title>
-<meta name="description" content="A lightweight, open-source trainer for single-player PC games. Detects your game, applies the options you choose, and restores everything when you close it.">
-<meta property="og:title" content="AZ Trainer">
-<meta property="og:description" content="A lightweight, open-source trainer for single-player PC games. Detects your game, applies the options you choose, and restores everything when you close it.">
+<title>AZ Trainer · Free, open-source game trainer for Windows</title>
+<meta name="description" content="AZ Trainer is a free, open-source game trainer for Windows. Infinite health, stamina, speed and more for single-player games like Black Myth: Wukong, Dragon Age: The Veilguard, Onimusha and A Plague Tale. No ads, no spyware.">
+<link rel="canonical" href="https://az-trainer-app.github.io/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#11131a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AZ Trainer">
+<meta property="og:url" content="https://az-trainer-app.github.io/">
+<meta property="og:title" content="AZ Trainer · Free, open-source game trainer for Windows">
+<meta property="og:description" content="Infinite health, stamina, speed and more for single-player PC games. Detects your game, applies the options you choose, and restores everything when you close it.">
 <meta property="og:image" content="https://raw.githubusercontent.com/az-trainer-app/az_trainer/main/docs/dawnwalker.png">
+<meta property="og:image:alt" content="AZ Trainer attached to The Blood of Dawnwalker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AZ Trainer · Free, open-source game trainer for Windows">
+<meta name="twitter:description" content="Infinite health, stamina, speed and more for single-player PC games. No ads, no spyware.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/az-trainer-app/az_trainer/main/docs/dawnwalker.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AZ Trainer",
+  "description": "A free, open-source game trainer for single-player PC games on Windows.",
+  "url": "https://az-trainer-app.github.io/",
+  "downloadUrl": "https://github.com/az-trainer-app/az_trainer/releases/latest/download/az_trainer.exe",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "screenshot": "https://raw.githubusercontent.com/az-trainer-app/az_trainer/main/docs/dawnwalker.png",
+  "codeRepository": "https://github.com/az-trainer-app/az_trainer"
+}
+</script>
 <link rel="icon" href="favicon.ico">
 <style>
   :root {
@@ -128,6 +156,8 @@
   .nav svg { width: 20px; height: 20px; }
   .caption { text-align: center; font-weight: 600; font-size: 18px; min-height: 1.6em; }
   .dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .game-list { list-style: none; padding: 0; margin: 28px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 760px; }
+  .game-list li { font-size: 13px; color: var(--dim); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
   .dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: width .25s, background .25s; }
   .dot:hover { background: var(--dim); }
   .dot[aria-current="true"] { width: 26px; background: var(--accent); }
@@ -230,6 +260,15 @@
         <div class="caption" aria-live="polite"></div>
         <div class="dots"></div>
       </div>
+      <ul class="game-list" aria-label="Supported games">
+        <li>Onimusha: Way of the Sword</li>
+        <li>The Blood of Dawnwalker</li>
+        <li>Resonance: A Plague Tale Legacy</li>
+        <li>Dragon Age: The Veilguard</li>
+        <li>Black Myth: Wukong</li>
+        <li>A Plague Tale: Requiem</li>
+        <li>A Plague Tale: Innocence</li>
+      </ul>
     </div>
   </section>
 
