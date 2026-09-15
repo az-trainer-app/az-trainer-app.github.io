@@ -36,7 +36,9 @@
   "codeRepository": "https://github.com/az-trainer-app/az_trainer"
 }
 </script>
-<link rel="icon" href="favicon.ico">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root {
     --bg: #11131a;
@@ -74,10 +76,7 @@
   }
   header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; letter-spacing: .2px; }
-  .brand .mark {
-    width: 26px; height: 26px; border-radius: 7px; background: var(--accent);
-    display: grid; place-items: center; color: #fff; font-size: 13px; font-weight: 700;
-  }
+  .brand .mark { width: 28px; height: 28px; display: block; }
   nav.links { display: flex; gap: 22px; font-size: 14px; }
   nav.links a { text-decoration: none; color: var(--dim); }
   nav.links a:hover { color: var(--text); }
@@ -206,7 +205,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#"><span class="mark">AZ</span>AZ Trainer</a>
+    <a class="brand" href="#"><img class="mark" src="icon.png" alt="" width="28" height="28">AZ Trainer</a>
     <nav class="links">
       <a href="#games">Games</a>
       <a class="opt" href="#how">How it works</a>
