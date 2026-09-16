@@ -71,6 +71,7 @@
   header.top {
     position: sticky; top: 0; z-index: 10;
     background: color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
@@ -99,7 +100,8 @@
     position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px;
     align-items: center; padding-block: 72px 64px;
   }
-  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 48px; } }
+  /* minmax: the screenshot's own width must not widen the column past the screen */
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px; } }
   .eyebrow { color: var(--accent-hi); font-size: 13px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; }
   h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 10px 0 16px; letter-spacing: -1px; }
   .lede { color: var(--dim); font-size: 19px; max-width: 32ch; margin: 0 0 28px; }
@@ -118,7 +120,7 @@
   .trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; font-size: 14px; font-weight: 600; color: var(--text); }
   .trust span { display: inline-flex; align-items: center; gap: 7px; }
   .trust svg { width: 16px; height: 16px; color: var(--accent-hi); flex: none; }
-  .shot-hero { justify-self: center; position: relative; }
+  .shot-hero { position: relative; display: flex; justify-content: center; min-width: 0; }
   .shot-hero .live { filter: drop-shadow(0 30px 60px rgba(0,0,0,.55)); }
 
   /* ---- sections -------------------------------------------------------- */
@@ -189,10 +191,50 @@
   }
   .live-banner.ready { opacity: 1; }
   .live-banner canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* Each screenshot keeps its own title, written once and never moved: mobile
+     browsers hold back repainting changed text inside a slide that is still
+     scaling, so a title swapped in with the banner showed only once the
+     carousel stopped. The title just fades with the banner under it. */
   .live-title {
-    position: absolute; left: calc(14 * 100cqw / 420); bottom: calc(8 * 100cqw / 420);
-    font-size: calc(20 * 100cqw / 420); line-height: 1.4; font-weight: 600; color: #fff; white-space: nowrap;
-    text-shadow: calc(100cqw / 420) calc(100cqw / 420) 0 rgba(0, 0, 0, .75);
+    position: absolute; z-index: 1; pointer-events: none;
+    left: calc(18.5 * 100cqw / 527); top: calc(163 * 100cqw / 527); transform: translateY(-100%);
+    font-size: calc(25 * 100cqw / 527); line-height: 1.4; font-weight: 600; color: #fff; white-space: nowrap;
+    text-shadow: calc(1.25 * 100cqw / 527) calc(1.25 * 100cqw / 527) 0 rgba(0, 0, 0, .75);
+    opacity: 0; transition: opacity .35s ease; will-change: opacity;
+  }
+  .live.lit > .live-title { opacity: 1; }
+
+  /* ---- phones --------------------------------------------------------- */
+  @media (hover: none) { .btn:hover { transform: none; } }
+  @media (max-width: 600px) {
+    .wrap { padding-inline: 18px; }
+    header.top .wrap { height: 52px; }
+    nav.links { gap: 18px; }
+    .hero .wrap { padding-block: 36px 44px; gap: 36px; }
+    h1 { font-size: 36px; }
+    .lede { font-size: 17px; margin-bottom: 24px; }
+    .cta .btn { flex: 1 1 0; justify-content: center; padding-inline: 14px; }
+    .trust { gap: 6px 14px; margin-top: 18px; }
+    section { padding-block: 52px; }
+    .sub { margin-bottom: 24px; }
+    /* the carousel runs edge to edge, the neighbours peeking in at the sides,
+       and its arrows sit beside the caption instead of over the screenshot */
+    .viewport {
+      margin-inline: -18px; padding-block: 28px 64px; margin-block: -20px -44px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .track { gap: 14px; }
+    .slide { width: calc(100vw - 72px); transform: scale(.9); }
+    .nav { top: auto; bottom: 0; width: 40px; height: 40px; }
+    .caption { font-size: 16px; line-height: 1.35; min-height: 2.7em; display: grid; place-items: center; padding-inline: 48px; }
+    .dots { gap: 6px; padding-bottom: 14px; }
+    .dot { width: 10px; height: 10px; }
+    .dot[aria-current="true"] { width: 24px; }
+    .game-list { margin-top: 24px; }
+    .card { padding: 20px; }
+    .note code { overflow-wrap: anywhere; }
+    footer .wrap { flex-direction: column; }
   }
 
   footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--dim); font-size: 14px; }
@@ -454,8 +496,7 @@
   function liveBanner(host) {
     const box = el('div', 'live-banner');
     const canvas = el('canvas');
-    const title = el('div', 'live-title');
-    box.append(canvas, title);
+    box.append(canvas);
     host.append(box);
     const none = { set() {}, moveTo() {} };
     const gl = canvas.getContext('webgl2', { alpha: false, antialias: false });
@@ -502,12 +543,13 @@
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
 
-    function set(id, name) {
-      title.textContent = name;
+    const lit = (on) => { box.classList.toggle('ready', on); box.parentElement.classList.toggle('lit', on); };
+
+    function set(id) {
       if (want === id) return;
       want = id;
       ready = false;
-      box.classList.remove('ready');
+      lit(false);
       const image = new Image();
       image.crossOrigin = 'anonymous';
       image.onload = () => {
@@ -522,7 +564,7 @@
         gl.uniform2f(uImg, image.naturalWidth, image.naturalHeight);
         ready = true;
         draw(performance.now());
-        box.classList.add('ready');
+        lit(true);
       };
       image.src = ART_URL(id);
     }
@@ -534,6 +576,7 @@
       set,
       /** Carry the banner over to another screenshot. */
       moveTo(host) {
+        box.parentElement.classList.remove('lit');
         host.append(box);
         draw(performance.now());
       },
@@ -547,7 +590,10 @@
     })(performance.now());
   }
 
-  liveBanner(document.querySelector('.shot-hero .live')).set('dawnwalker', 'The Blood of Dawnwalker');
+  /** The banner's title, laid over a screenshot once. */
+  const titled = (live, name) => { live.append(el('div', 'live-title', name)); return live; };
+
+  liveBanner(titled(document.querySelector('.shot-hero .live'), 'The Blood of Dawnwalker')).set('dawnwalker');
 
   // ---- screenshot carousel -------------------------------------------------
   // newest game first, by Steam release date
@@ -584,6 +630,7 @@
     img.alt = `AZ Trainer attached to ${g.title}`;
     img.draggable = false;
     live.append(img);
+    titled(live, g.title);
     slide.append(live);
     slide.addEventListener('click', () => { if (!swiped && i !== current) go(i, true); });
     track.append(slide);
@@ -612,7 +659,7 @@
     track.style.transform = `translateX(${viewport.clientWidth / 2 - (front.offsetLeft + front.offsetWidth / 2)}px)`;
     caption.textContent = g.title;
     slideBanner.moveTo(slides[current].live);
-    slideBanner.set(g.id, g.title);
+    slideBanner.set(g.id);
     if (byUser) {
       history.replaceState(null, '', `#${g.id}`);
       autoplay();
@@ -642,6 +689,7 @@
 
   let startX = null;
   viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; swiped = false; });
+  viewport.addEventListener('pointercancel', () => { startX = null; });
   viewport.addEventListener('pointerup', (e) => {
     if (startX === null) return;
     const dx = e.clientX - startX;
