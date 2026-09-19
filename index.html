@@ -39,209 +39,7 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<style>
-  :root {
-    --bg: #11131a;
-    --panel: #181b23;
-    --panel-2: #1e222c;
-    --line: #2a2f3a;
-    --text: #d6dae3;
-    --dim: #7c8595;
-    --accent: #c23b3b;
-    --accent-hi: #d85050;
-    --radius: 14px;
-    --max: 1080px;
-    color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  a { color: inherit; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding-inline: 20px; }
-
-  /* ---- header ---------------------------------------------------------- */
-  header.top {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; letter-spacing: .2px; }
-  .brand .mark { width: 28px; height: 28px; display: block; }
-  nav.links { display: flex; gap: 22px; font-size: 14px; }
-  nav.links a { text-decoration: none; color: var(--dim); }
-  nav.links a:hover { color: var(--text); }
-  @media (max-width: 560px) { nav.links a.opt { display: none; } }
-
-  /* ---- hero ------------------------------------------------------------ */
-  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
-  .hero::before {
-    content: ""; position: absolute; inset: -20%;
-    background:
-      radial-gradient(40% 50% at 20% 30%, rgba(194, 59, 59, .28), transparent 70%),
-      radial-gradient(35% 45% at 85% 20%, rgba(90, 110, 170, .18), transparent 70%),
-      radial-gradient(50% 60% at 60% 90%, rgba(194, 59, 59, .12), transparent 70%);
-    filter: blur(20px);
-    animation: drift 18s ease-in-out infinite alternate;
-  }
-  @keyframes drift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.06); } }
-  @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
-  .hero .wrap {
-    position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px;
-    align-items: center; padding-block: 72px 64px;
-  }
-  /* minmax: the screenshot's own width must not widen the column past the screen */
-  @media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px; } }
-  .eyebrow { color: var(--accent-hi); font-size: 13px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; }
-  h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; margin: 10px 0 16px; letter-spacing: -1px; }
-  .lede { color: var(--dim); font-size: 19px; max-width: 32ch; margin: 0 0 28px; }
-  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 10px;
-    font-weight: 600; text-decoration: none; border: 1px solid var(--line); transition: background .15s, border-color .15s, transform .15s;
-  }
-  .btn:hover { transform: translateY(-1px); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.primary:hover { background: var(--accent-hi); border-color: var(--accent-hi); }
-  .btn.ghost { background: var(--panel); }
-  .btn.ghost:hover { border-color: var(--dim); }
-  .btn svg { width: 18px; height: 18px; }
-  .meta { color: var(--dim); font-size: 13px; margin-top: 14px; }
-  .trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; font-size: 14px; font-weight: 600; color: var(--text); }
-  .trust span { display: inline-flex; align-items: center; gap: 7px; }
-  .trust svg { width: 16px; height: 16px; color: var(--accent-hi); flex: none; }
-  .shot-hero { position: relative; display: flex; justify-content: center; min-width: 0; }
-  .shot-hero .live { filter: drop-shadow(0 30px 60px rgba(0,0,0,.55)); }
-
-  /* ---- sections -------------------------------------------------------- */
-  section { padding-block: 72px; }
-  section + section { border-top: 1px solid var(--line); }
-  h2 { font-size: clamp(26px, 3.4vw, 34px); margin: 0 0 10px; letter-spacing: -.4px; }
-  .sub { color: var(--dim); margin: 0 0 32px; max-width: 60ch; }
-
-  /* ---- screenshot carousel ------------------------------------------- */
-  .carousel { position: relative; outline: none; }
-  .viewport {
-    /* room for the slides' drop shadows inside the clip, given back in margin */
-    overflow: hidden; padding-block: 48px 96px; margin-block: -36px -68px; touch-action: pan-y;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
-  }
-  .track { display: flex; align-items: center; gap: 40px; transition: transform .55s cubic-bezier(.22, .7, .2, 1); will-change: transform; }
-  .slide {
-    flex: 0 0 auto; width: min(420px, 76vw); opacity: .3; transform: scale(.86); filter: saturate(.4);
-    transition: opacity .45s, transform .45s, filter .45s; cursor: pointer; user-select: none;
-  }
-  .slide.active { opacity: 1; transform: none; filter: none; cursor: default; }
-  .slide .live { width: 100%; filter: drop-shadow(0 22px 44px rgba(0, 0, 0, .55)); }
-  .slide img { -webkit-user-drag: none; }
-  .nav {
-    position: absolute; top: calc(50% - 44px); z-index: 2; width: 44px; height: 44px; border-radius: 50%;
-    display: grid; place-items: center; cursor: pointer; color: var(--text);
-    background: color-mix(in srgb, var(--panel) 85%, transparent); border: 1px solid var(--line);
-    transition: border-color .15s, background .15s;
-  }
-  .nav:hover { border-color: var(--dim); background: var(--panel-2); }
-  .nav.prev { left: 0; }
-  .nav.next { right: 0; }
-  .nav svg { width: 20px; height: 20px; }
-  .caption { text-align: center; font-weight: 600; font-size: 18px; min-height: 1.6em; }
-  .dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
-  .game-list { list-style: none; padding: 0; margin: 28px auto 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 760px; }
-  .game-list li { font-size: 13px; color: var(--dim); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
-  .dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: width .25s, background .25s; }
-  .dot:hover { background: var(--dim); }
-  .dot[aria-current="true"] { width: 26px; background: var(--accent); }
-  .nav:focus-visible, .dot:focus-visible, .carousel:focus-visible .slide.active { outline: 2px solid var(--accent-hi); outline-offset: 3px; }
-
-  /* ---- steps & features ------------------------------------------------ */
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 860px) { .grid3 { grid-template-columns: 1fr; } }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
-  .card .n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--line); color: var(--accent-hi); font-weight: 700; font-size: 14px; margin-bottom: 14px; }
-  .card h4 { margin: 0 0 6px; font-size: 17px; }
-  .card p { margin: 0; color: var(--dim); font-size: 15px; }
-  .card .ic { width: 22px; height: 22px; color: var(--accent-hi); margin-bottom: 12px; }
-  .note { margin-top: 24px; color: var(--dim); font-size: 14px; }
-  .note { max-width: 78ch; }
-  .note strong { color: var(--text); }
-  .note code { background: var(--panel-2); padding: 2px 6px; border-radius: 5px; border: 1px solid var(--line); font-size: 13px; }
-
-  /* ---- live banner over a screenshot ----------------------------------
-     Screenshots are 527px wide; the banner inside them starts 1px in and
-     38px down and is 525x135 - the trainer's 420x108 at 125%. The canvas
-     redraws it live over that spot, and the title is set again on top. */
-  /* a definite width: a size container cannot take it from its content */
-  .live { position: relative; container-type: inline-size; width: 420px; max-width: 100%; }
-  .live > img { width: 100%; height: auto; display: block; }
-  .live-banner {
-    position: absolute; left: calc(100cqw / 527); top: calc(38 * 100cqw / 527); width: calc(525 * 100cqw / 527);
-    aspect-ratio: 420 / 108; container-type: inline-size; overflow: hidden;
-    opacity: 0; transition: opacity .35s ease;
-  }
-  .live-banner.ready { opacity: 1; }
-  .live-banner canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  /* Each screenshot keeps its own title, written once and never moved: mobile
-     browsers hold back repainting changed text inside a slide that is still
-     scaling, so a title swapped in with the banner showed only once the
-     carousel stopped. The title just fades with the banner under it. */
-  .live-title {
-    position: absolute; z-index: 1; pointer-events: none;
-    left: calc(18.5 * 100cqw / 527); top: calc(163 * 100cqw / 527); transform: translateY(-100%);
-    font-size: calc(25 * 100cqw / 527); line-height: 1.4; font-weight: 600; color: #fff; white-space: nowrap;
-    text-shadow: calc(1.25 * 100cqw / 527) calc(1.25 * 100cqw / 527) 0 rgba(0, 0, 0, .75);
-    opacity: 0; transition: opacity .35s ease; will-change: opacity;
-  }
-  .live.lit > .live-title { opacity: 1; }
-
-  /* ---- phones --------------------------------------------------------- */
-  @media (hover: none) { .btn:hover { transform: none; } }
-  @media (max-width: 600px) {
-    .wrap { padding-inline: 18px; }
-    header.top .wrap { height: 52px; }
-    nav.links { gap: 18px; }
-    .hero .wrap { padding-block: 36px 44px; gap: 36px; }
-    h1 { font-size: 36px; }
-    .lede { font-size: 17px; margin-bottom: 24px; }
-    .cta .btn { flex: 1 1 0; justify-content: center; padding-inline: 14px; }
-    .trust { gap: 6px 14px; margin-top: 18px; }
-    section { padding-block: 52px; }
-    .sub { margin-bottom: 24px; }
-    /* the carousel runs edge to edge, the neighbours peeking in at the sides,
-       and its arrows sit beside the caption instead of over the screenshot */
-    .viewport {
-      margin-inline: -18px; padding-block: 28px 64px; margin-block: -20px -44px;
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    }
-    .track { gap: 14px; }
-    .slide { width: calc(100vw - 72px); transform: scale(.9); }
-    .nav { top: auto; bottom: 0; width: 40px; height: 40px; }
-    .caption { font-size: 16px; line-height: 1.35; min-height: 2.7em; display: grid; place-items: center; padding-inline: 48px; }
-    .dots { gap: 6px; padding-bottom: 14px; }
-    .dot { width: 10px; height: 10px; }
-    .dot[aria-current="true"] { width: 24px; }
-    .game-list { margin-top: 24px; }
-    .card { padding: 20px; }
-    .note code { overflow-wrap: anywhere; }
-    footer .wrap { flex-direction: column; }
-  }
-
-  footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--dim); font-size: 14px; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
-  footer a { color: var(--dim); }
-  footer a:hover { color: var(--text); }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -301,16 +99,18 @@
         <div class="caption" aria-live="polite"></div>
         <div class="dots"></div>
       </div>
+      <!-- games:list -->
       <ul class="game-list" aria-label="Supported games">
-        <li>Onimusha: Way of the Sword</li>
-        <li>The Blood of Dawnwalker</li>
-        <li>Resonance: A Plague Tale Legacy</li>
-        <li>007 First Light</li>
-        <li>Dragon Age: The Veilguard</li>
-        <li>Black Myth: Wukong</li>
-        <li>A Plague Tale: Requiem</li>
-        <li>A Plague Tale: Innocence</li>
+        <li><a href="games/onimusha/">Onimusha: Way of the Sword Trainer</a></li>
+        <li><a href="games/dawnwalker/">The Blood of Dawnwalker Trainer</a></li>
+        <li><a href="games/resonance/">Resonance: A Plague Tale Legacy Trainer</a></li>
+        <li><a href="games/firstlight/">007 First Light Trainer</a></li>
+        <li><a href="games/veilguard/">Dragon Age: The Veilguard Trainer</a></li>
+        <li><a href="games/wukong/">Black Myth: Wukong Trainer</a></li>
+        <li><a href="games/requiem/">A Plague Tale: Requiem Trainer</a></li>
+        <li><a href="games/innocence/">A Plague Tale: Innocence Trainer</a></li>
       </ul>
+      <!-- /games:list -->
     </div>
   </section>
 

@@ -1,0 +1,478 @@
+[
+  {
+    "id": "dawnwalker",
+    "title": "The Blood of Dawnwalker",
+    "processes": [
+      "Dawnwalker.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": "Survival",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Human Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Vampiric Blood",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Stamina",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "No Hit Reaction",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": "",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "No Slow-Motion Finishers",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Speed",
+        "once": false,
+        "levels": [
+          2.0,
+          4.0,
+          8.0
+        ],
+        "labels": [],
+        "keys": [
+          "Alt+F1",
+          "Alt+F2",
+          "Alt+F3"
+        ]
+      },
+      {
+        "separator": null,
+        "name": "Denarii",
+        "once": true,
+        "levels": [
+          1000.0,
+          10000.0,
+          99999.0
+        ],
+        "labels": [
+          "1k",
+          "10k",
+          "99k"
+        ],
+        "keys": []
+      }
+    ]
+  },
+  {
+    "id": "firstlight",
+    "title": "007 First Light",
+    "processes": [
+      "007FirstLight.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": null,
+        "name": "Infinite Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F1"
+        ]
+      },
+      {
+        "separator": null,
+        "name": "Infinite Instinct",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F2"
+        ]
+      },
+      {
+        "separator": null,
+        "name": "Infinite Q-Lens Resources",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F3"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "innocence",
+    "title": "A Plague Tale: Innocence",
+    "processes": [
+      "APlagueTaleInnocence_x64.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": null,
+        "name": "Invisible",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "onimusha",
+    "title": "Onimusha: Way of the Sword",
+    "processes": [
+      "OnimushaWotS.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": "Survival",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Stamina",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": "Combat",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Max Oni Power",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": "",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Red Souls",
+        "once": true,
+        "levels": [
+          10000.0,
+          99000.0,
+          999000.0
+        ],
+        "labels": [
+          "10k",
+          "99k",
+          "999k"
+        ],
+        "keys": []
+      }
+    ]
+  },
+  {
+    "id": "requiem",
+    "title": "A Plague Tale: Requiem",
+    "processes": [
+      "APlagueTaleRequiem_x64.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": null,
+        "name": "Invisible",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "resonance",
+    "title": "Resonance: A Plague Tale Legacy",
+    "processes": [
+      "Resonance.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": null,
+        "name": "Infinite Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F1"
+        ]
+      },
+      {
+        "separator": null,
+        "name": "Invisible",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": [
+          "Alt+F2"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "veilguard",
+    "title": "Dragon Age: The Veilguard",
+    "processes": [
+      "Dragon Age The Veilguard.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": "Combat",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Unlimited Mana",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "No Cooldowns",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Unlimited Potions",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": "Progression",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Ability Points Never Decrease",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Bonus XP (+5000)",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Gold",
+        "once": false,
+        "levels": [
+          1000.0,
+          10000.0,
+          99999.0
+        ],
+        "labels": [
+          "1k",
+          "10k",
+          "99k"
+        ],
+        "keys": []
+      }
+    ]
+  },
+  {
+    "id": "wukong",
+    "title": "Black Myth: Wukong",
+    "processes": [
+      "b1-Win64-Shipping.exe"
+    ],
+    "builds": [],
+    "columns": 1,
+    "options": [
+      {
+        "separator": "Survival",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Health",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Mana",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Stamina",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": "Combat",
+        "name": "",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Focus",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Spirit Energy",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Infinite Vessel Energy",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "No Cooldowns",
+        "once": false,
+        "levels": [],
+        "labels": [],
+        "keys": []
+      },
+      {
+        "separator": null,
+        "name": "Speed",
+        "once": false,
+        "levels": [
+          2.0,
+          4.0
+        ],
+        "labels": [],
+        "keys": [
+          "Alt+F1",
+          "Alt+F2"
+        ]
+      }
+    ]
+  }
+]
